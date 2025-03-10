@@ -1,10 +1,14 @@
 <template>
   <div class="bg-cream py-10">
     <h2 class="text-center text-2xl md:text-3xl font-bold mb-6">Blog</h2>
-    
+
     <div class="relative max-w-5xl mx-auto">
       <div ref="sliderRef" class="keen-slider">
-        <div v-for="(blog, index) in blogs" :key="index" class="keen-slider__slide bg-white  shadow-md overflow-hidden border border-gray-200">
+        <div
+          v-for="(blog, index) in blogs"
+          :key="index"
+          class="keen-slider__slide bg-white shadow-md overflow-hidden border border-gray-200"
+        >
           <img :src="blog.image" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-lg font-semibold text-gray-900">{{ blog.title }}</h3>
@@ -12,13 +16,23 @@
           </div>
         </div>
       </div>
-      <button @click="prevSlide" class="prev-btn absolute left-[-80px] top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow flex items-center justify-center cursor-pointer">
+
+      <!-- الأسهم (مخفية على الشاشات الصغيرة) -->
+      <button
+        v-if="showNavigation"
+        @click="prevSlide"
+        class="prev-btn absolute left-[-80px] top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow flex items-center justify-center cursor-pointer"
+      >
         <svg class="w-7 h-7 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
 
-      <button @click="nextSlide" class="next-btn absolute right-[-80px] top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow flex items-center justify-center cursor-pointer">
+      <button
+        v-if="showNavigation"
+        @click="nextSlide"
+        class="next-btn absolute right-[-80px] top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow flex items-center justify-center cursor-pointer"
+      >
         <svg class="w-7 h-7 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
         </svg>
@@ -35,34 +49,65 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import KeenSlider from "keen-slider";
 import "keen-slider/keen-slider.min.css";
 
 export default {
   setup() {
     const sliderRef = ref(null);
-    let sliderInstance = null;
-    const blogs = ref([
-      { image: "https://picsum.photos/400/300?random=1", title: "How to be 1% Better Every Day" },
-      { image: "https://picsum.photos/400/300?random=2", title: "5 Habits of Highly Effective People" },
-      { image: "https://picsum.photos/400/300?random=3", title: "Why Mindset Matters" },
-      { image: "https://picsum.photos/400/300?random=4", title: "Building a Strong Morning Routine" },
-      { image: "https://picsum.photos/400/300?random=5", title: "The Power of Gratitude" }
-    ]);
+    const slider = ref(null);
+    const slidesPerView = ref(3);
+    const showNavigation = ref(true);
+
+    const updateSliderSettings = () => {
+      if (window.innerWidth < 768) {
+        slidesPerView.value = 1; // شريحة واحدة على الشاشات الصغيرة
+        showNavigation.value = false; // إخفاء الأسهم
+      } else {
+        slidesPerView.value = 3; // 3 شرائح على الشاشات الكبيرة
+        showNavigation.value = true; // إظهار الأسهم
+      }
+
+      if (slider.value) {
+        slider.value.update({
+          loop: true,
+          slides: { perView: slidesPerView.value, spacing: 20 },
+        });
+      }
+    };
 
     onMounted(() => {
-      sliderInstance = new KeenSlider(sliderRef.value, {
+      updateSliderSettings(); // تحديث عند التحميل
+      slider.value = new KeenSlider(sliderRef.value, {
         loop: true,
-        slides: { perView: 3, spacing: 20 }
+        slides: { perView: slidesPerView.value, spacing: 20 },
       });
+
+      window.addEventListener("resize", updateSliderSettings);
     });
 
-    const prevSlide = () => sliderInstance.prev();
-    const nextSlide = () => sliderInstance.next();
+    onUnmounted(() => {
+      window.removeEventListener("resize", updateSliderSettings);
+    });
 
-    return { blogs, prevSlide, nextSlide, sliderRef };
-  }
+    const prevSlide = () => slider.value.moveToIdx(slider.value.track.details.rel - 1, true);
+    const nextSlide = () => slider.value.moveToIdx(slider.value.track.details.rel + 1, true);
+
+    return {
+      blogs: [
+        { image: "https://picsum.photos/400/300?random=1", title: "How to be 1% Better Every Day" },
+        { image: "https://picsum.photos/400/300?random=2", title: "5 Habits of Highly Effective People" },
+        { image: "https://picsum.photos/400/300?random=3", title: "Why Mindset Matters" },
+        { image: "https://picsum.photos/400/300?random=4", title: "Building a Strong Morning Routine" },
+        { image: "https://picsum.photos/400/300?random=5", title: "The Power of Gratitude" },
+      ],
+      sliderRef,
+      prevSlide,
+      nextSlide,
+      showNavigation,
+    };
+  },
 };
 </script>
 
