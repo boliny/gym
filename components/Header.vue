@@ -5,7 +5,7 @@
       
       <!-- Logo & Social Icons -->
       <div class="flex items-center space-x-4">
-        <h1 class="text-xl font-bold text-white">COACH ONLINE GYM</h1>
+        <h1 class="text-xl font-bold text-white cursor-pointer"> <a @click="goToHome">COACH ONLINE</a> </h1>
         <div class="hidden md:flex space-x-3">
           <a href="#" class="text-gray-300 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="text-gray-300 hover:text-white transition"><i class="fab fa-x-twitter"></i></a>
@@ -22,7 +22,7 @@
       <!-- Navigation Links -->
       <div :class="{'hidden': !menuOpen, 'flex': menuOpen}" class="md:flex md:items-center md:space-x-6 w-full md:w-auto mt-4 md:mt-0">
         <ul class="flex flex-col md:flex-row md:space-x-4 items-center w-full md:w-auto">
-          <li><a href="#" class="nav-link active">Home</a></li>
+          <li><a @click="goToHome" class="nav-link active cursor-pointer">Home</a></li>
           <li class="relative group">
             <a href="#" class="nav-link flex items-center cursor-pointer">
               Blog <i class="fas fa-chevron-down ml-1"></i>
@@ -33,7 +33,8 @@
             </ul>
           </li>
           <li><a href="#" class="nav-link">Shop</a></li>
-          <li><a href="#" class="nav-link">Contact</a></li>
+          <li><a @click="goToContact" class="nav-link cursor-pointer">Contact</a></li>
+
         </ul>
         
         <!-- Search & Cart Icons -->
@@ -58,6 +59,12 @@ export default {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
     },
+   goToContact() {
+  navigateTo('/contact', { external: false });
+},
+goToHome() {
+  navigateTo('/', { external: false });
+}
   },
 };
 </script>

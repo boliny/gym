@@ -6,7 +6,10 @@
     <Blog/>
     <Steps/>
     <SelfDevelopment/>
+    <Features/>
     <Course/>
+    <State/>
+    <SignUp/>
   </div>
 </template>
 

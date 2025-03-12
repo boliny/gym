@@ -1,35 +1,36 @@
 <template>
-  <div class="flex flex-col justify-between bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-900 text-white items-center p-6 md:p-12">
-    <div class="container grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full max-w-6xl">
-      
-      <!-- Image Section (Moves from bottom to top) -->
-      <div class="animate-slide-up-slow max-w-[90%] flex justify-center">
-        <img src="/public/pngegg.png" alt="Gym" class="w-3/4 sm:w-2/3 md:w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-cover rounded-lg shadow-lg">
-      </div>
+  <div class="hero-section flex flex-col md:flex-row text-white p-6 md:p-8 min-h-[70vh] overflow-hidden">
+    
+    <!-- Image Section -->
+    <div class="image-container">
+      <img src="/public/pngegg.png" alt="Gym" class="gym-image  w-full animate-slide-up">
+    </div>
 
-      <!-- Content Section -->
-      <div class="text-center md:text-left animate-fade-in-up">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4">
-          {{ title }}
-        </h1>
-        <p class="text-base sm:text-lg md:text-xl text-gray-200 mb-6">
-          {{ subtitle }}
-        </p>
-        <button class="bg-amber-400 hover:bg-amber-500 font-bold py-3 px-6 rounded-lg text-lg shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer">
+    <!-- Content Section -->
+    <div class="text-center md:text-left justify-center  px-4 sm:px-6 lg:px-10">
+      <p class="my-10 md:my-10 text-lg md:text-xl font-bold animate-fade-in delay-1">Hi, I am Richard Hopkins.</p>
+      <h1 class="text-6xl font-extrabold sm:text-xl md:text-4xl leading-tight mb-3 animate-fade-in delay-2">
+        {{ title }}
+      </h1>
+      <p class="text-sm sm:text-base md:text-lg mb-4 animate-fade-in delay-3">
+        {{ subtitle }}
+      </p>
+      <button class="bg-amber-300 hover:bg-amber-500 font-bold text-black py-5 px-15 rounded-lg  shadow-lg transform hover:scale-110 transition duration-300 cursor-pointer animate-fade-in delay-4">
           {{ buttonText }}
-        </button>
-        <div class="mt-10 flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4">
-          <span
-            v-for="(brand, index) in featuredIn"
-            :key="index"
-            class="text-gray-300 text-sm sm:text-base md:text-lg animate-fade-in-seq"
-            :style="{ animationDelay: index * 0.2 + 's' }"
-          >
-            {{ brand }}
-          </span>
-        </div>
+      </button>
+      
+      <!-- Featured In Section -->
+      <h3 class=" text-center text-sm sm:text-base font-bold mt-6 animate-fade-in delay-5">FEATURED IN</h3>
+      <div class="flex justify-center items-center gap-8 mt-4 flex-wrap">
+        <span class="brand-logo animate-fade-in delay-5 text-white text-2xl font-bold">HOLP</span>
+        <span class="brand-logo animate-fade-in delay-6 text-white italic text-xl">Feed&Food</span>
+        <span class="brand-logo animate-fade-in delay-7 text-white text-2xl font-bold">LA <span class="text-sm">COACH BASE</span></span>
+        <span class="brand-logo animate-fade-in delay-8 text-white text-2xl font-bold">Bridgette</span>
+        <span class="brand-logo animate-fade-in delay-9 text-white text-2xl font-bold">amazero</span>
+        <span class="brand-logo animate-fade-in delay-10 text-white italic text-xl">Vibes</span>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -37,48 +38,98 @@
 export default {
   data() {
     return {
-      title: "TRANSFORM YOUR BODY & MIND",
-      subtitle: "Join our elite gym and start your fitness journey today!",
-      buttonText: "Get Started",
-      featuredIn: ["Men's Fitness", "FitLife", "Strong Nation", "Health Hub"],
+      title: "I HELPED MILLIONS OF PEOPLE TO IMPROVE THEIR LIVES",
+      subtitle: "Are you the next? Discover the simple 3 Steps that I Discovered to Hack Productivity. It works 100%. Wanna transform your life?",
+      buttonText: "Get Your FREE GUIDE",
     };
   },
 };
 </script>
 
-<style>
-@keyframes fadeInSequentially {
-  from {
+<style scoped>
+@keyframes fadeInUp {
+  0% {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.animate-fade-in-seq {
-  animation: fadeInSequentially 1.2s ease-out forwards;
-  opacity: 0; /* يبدأ مخفيًا حتى يظهر بالأنيميشن */
-}
-
-@keyframes slideUpSlow {
-  from {
+@keyframes slideUp {
+  0% {
     opacity: 0;
     transform: translateY(100%);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 1.2s ease-out;
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.hero-section {
+  background-image: url('/public/waves.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+}
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 1.5s ease-out forwards;
 }
 
-.animate-slide-up-slow {
-  animation: slideUpSlow 2s ease-out;
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+.delay-5 { animation-delay: 1s; }
+.delay-6 { animation-delay: 1.2s; }
+.delay-7 { animation-delay: 1.4s; }
+.delay-8 { animation-delay: 1.6s; }
+.delay-9 { animation-delay: 1.8s; }
+.delay-10 { animation-delay: 2s; }
+
+.animate-bounce-slow {
+  animation: bounceSlow 2s infinite;
+}
+
+.hero-section {
+  overflow: hidden;
+}
+
+.image-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.gym-image {
+  max-width: 500px;
+  position: absolute;
+  top: 0;
+}
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .gym-image {
+    max-width: 100%;
+    position: relative;
+    left: 50%;    
+    top: 30px;
+  }
 }
 </style>
