@@ -82,6 +82,11 @@ export default {
       slider.value = new KeenSlider(sliderRef.value, {
         loop: true,
         slides: { perView: slidesPerView.value, spacing: 20 },
+        created(s) {
+          setInterval(() => {
+            s.moveToIdx(s.track.details.rel + 1, true);
+          }, 3000); // MARKER: تم إضافة التشغيل التلقائي بدون توقف
+        }, 
       });
 
       window.addEventListener("resize", updateSliderSettings);

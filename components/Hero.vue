@@ -122,7 +122,6 @@ export default {
 }
 @media (max-width: 1024px) {
   .hero-section {
-    flex-direction: column-reverse;
     text-align: center;
   }
   .gym-image {

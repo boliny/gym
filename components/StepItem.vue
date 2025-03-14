@@ -7,7 +7,7 @@
     </div>
 
     <!-- الدائرة -->
-    <div class="w-18 h-18 flex items-center justify-center rounded-full text-lg font-bold border-4 absolute left-[-50px] top-[60px] transition-colors duration-500"
+    <div class="w-18 h-18 flex items-center justify-center rounded-full text-lg font-bold border-4 absolute left-[-50px] top-[50px] transition-colors duration-500"
       :class="isVisible ? 'bg-emerald-500 text-white border-emerald-500' : 'bg-gray-200 text-gray-500 border-gray-300'">
       {{ number }}
     </div>
@@ -17,7 +17,7 @@
       :class="isVisible ? 'bg-emerald-500 text-white' : 'bg-white text-gray-800'">
       <!-- سهم على اليسار -->
       <div class="absolute top-1/2 left-[-10px] w-5 h-5 transform -translate-y-1/2 rotate-45 transition-colors duration-500"
-        :class="isVisible ? 'bg-emerald-500' : 'bg-white border border-gray-300'"></div>
+        :class="isVisible ? 'bg-emerald-500' : 'bg-white '"></div>
       <div>
         <h4 class="font-bold my-4">{{ title }}</h4>
         <p class="">{{ text }}</p>

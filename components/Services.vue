@@ -111,7 +111,7 @@ export default {
       if (window.innerWidth < 768) {
         slidesPerView.value = 1; // عرض شريحة واحدة على الشاشات الصغيرة
         showNavigation.value = false; // إخفاء الأسهم
-        showPagination.value = false; // إخفاء pagination
+        showPagination.value = true; // إخفاء pagination
       } else {
         slidesPerView.value = 3; // عرض ثلاث شرائح على الشاشات الكبيرة
         showNavigation.value = true; // إظهار الأسهم
@@ -132,7 +132,9 @@ export default {
         loop: true,
         slides: { perView: slidesPerView.value, spacing: 20 },
         created(s) {
-          currentSlide.value = s.track.details.rel;
+          setInterval(() => {
+            s.moveToIdx(s.track.details.rel + 1, true);
+          }, 3000); // MARKER: تم إضافة التشغيل التلقائي بدون توقف
         },
         slideChanged(s) {
           currentSlide.value = s.track.details.rel;
