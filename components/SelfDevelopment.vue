@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gradient-to-r from-indigo-900 to-purple-600 min-h-screen flex items-center justify-center p-4 sm:p-6">
     <div class="flex flex-col md:flex-row items-center w-full gap-12 p-6">
-      
+       
       <!-- القسم الأيسر - فيديو يوتيوب -->
       <div class="w-full md:w-1/2 relative p-4 flex justify-center">
         <div class="relative w-full" style="padding-top: 56.25%;">

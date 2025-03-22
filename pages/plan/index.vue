@@ -1,0 +1,10 @@
+<template>
+  <PlanStep/>
+  <PlanHelp1/>
+  <PlanHelp2/>
+  <PlanHelp3/>
+  <PlanHelp4/>
+  <PlanHelp5/>
+  <PlanHelp6/>
+  <PlanHelp10/>
+</template>

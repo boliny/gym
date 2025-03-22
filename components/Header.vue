@@ -31,8 +31,8 @@
             
             <transition name="fade">
               <ul v-if="dropdownVisible" class="dropdown-menu">
-                <li><a href="#" class="dropdown-item">For Individuals</a></li>
-                <li><a href="#" class="dropdown-item">For Business</a></li>
+                <li><a @click="goToPlan" class="dropdown-item">For Individuals</a></li>
+                <li><a @click="goToPlan" class="dropdown-item">For Business</a></li>
               </ul>
             </transition>
           </li>
@@ -71,6 +71,9 @@ export default {
     },
     goToHome() {
       navigateTo('/', { external: false });
+    },
+    goToPlan() {
+      navigateTo('/plan', { external: false });
     },
     showDropdown() {
       clearTimeout(this.dropdownTimeout);

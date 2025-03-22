@@ -4,7 +4,7 @@
 
     <div class="relative max-w-5xl mx-auto">
       <div ref="sliderRef" class="keen-slider">
-        <div v-for="(course, index) in courses" :key="index" class="keen-slider__slide bg-gradient-to-r from-indigo-400 to-purple-500 shadow-md overflow-hidden">
+        <div v-for="(course, index) in courses" :key="index" class="keen-slider__slide bg-slate-200/20 shadow-md overflow-hidden">
           <img :src="course.image" class="w-full h-48 object-cover" />
           <div class="p-15">
             <p class="text-green-400 font-bold">{{ course.price }}</p>
