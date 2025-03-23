@@ -6,22 +6,28 @@
     </div>
     <div class="grid grid-cols-3 grid-rows-2 gap-0 mt-10 max-w-5xl mx-auto">
       <!-- First row -->
-      <div class="border border-white flex items-center justify-center text-6xl">🚀</div>
-      <div class="border border-white flex flex-col items-center justify-center p-6 text-center">
+      <div class="border border-white flex items-center justify-center text-6xl">
+        <font-awesome-icon :icon="['fas', 'rocket']" />
+      </div>
+      <div class=" flex flex-col items-center justify-center p-6 text-center">
         <h3 class="text-xl font-semibold">1:1 Coaching</h3>
         <p class="text-gray-300 mt-2">Magnetized strongly enough pre vending domain overeus all initial results to estimate the in the big bang contradicted.</p>
         <a href="#" class="mt-4 inline-block transform transition duration-300 hover:scale-105">READ MORE</a>
       </div>
-      <div class="border border-white flex items-center justify-center text-6xl">🏆</div>
+      <div class="border border-white flex items-center justify-center text-6xl">
+        <font-awesome-icon :icon="['fas', 'trophy']" />
+      </div>
       
       <!-- Second row -->
-      <div class="border border-white flex flex-col items-center justify-center p-6 text-center">
+      <div class=" flex flex-col items-center justify-center p-6 text-center">
         <h3 class="text-xl font-semibold">Self Development</h3>
         <p class="text-gray-300 mt-2">Magnetized strongly enough pre vending domain overeus all initial results to estimate the in the big bang contradicted.</p>
         <a href="#" class="mt-4 inline-block transform transition duration-300 hover:scale-105">READ MORE</a>
       </div>
-      <div class="border border-white flex items-center justify-center text-6xl">📖</div>
-      <div class="border border-white flex flex-col items-center justify-center p-6 text-center">
+      <div class="border border-white flex items-center justify-center text-6xl">
+        <font-awesome-icon :icon="['fas', 'book']" />
+      </div>
+      <div class=" flex flex-col items-center justify-center p-6 text-center">
         <h3 class="text-xl font-semibold">Life Programs</h3>
         <p class="text-gray-300 mt-2">Magnetized strongly enough pre vending domain overeus all initial results to estimate the in the big bang contradicted.</p>
         <a href="#" class="mt-4 inline-block transform transition duration-300 hover:scale-105">READ MORE</a>
@@ -31,15 +37,15 @@
 </template>
 
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faRocket, faTrophy, faBook } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faRocket, faTrophy, faBook);
+
 export default {
-  data() {
-    return {
-      services: [
-        { title: "1:1 Coaching", icon: "🚀", description: "Magnetized strongly enough pre vending domain overeus all initial results to estimate the in the big bang contradicted." },
-        { title: "Self Development", icon: "📖", description: "Magnetized strongly enough pre vending domain overeus all initial results to estimate the in the big bang contradicted." },
-        { title: "Life Programs", icon: "🏆", description: "Magnetized strongly enough pre vending domain overeus all initial results to estimate the in the big bang contradicted." }
-      ]
-    };
+  components: {
+    FontAwesomeIcon
   }
 };
 </script>

@@ -37,7 +37,7 @@
             </transition>
           </li>
 
-          <li><a href="#" class="nav-link cursor-pointer">Blog</a></li>
+          <li><a @click="goToBlog" class="nav-link cursor-pointer">Blog</a></li>
           <li><a href="#" class="nav-link">Shop</a></li>
           <li><a @click="goToContact" class="nav-link cursor-pointer">Contact</a></li>
         </ul>
@@ -74,6 +74,9 @@ export default {
     },
     goToPlan() {
       navigateTo('/plan', { external: false });
+    },
+    goToBlog() {
+      navigateTo('/blog', { external: false });
     },
     showDropdown() {
       clearTimeout(this.dropdownTimeout);
