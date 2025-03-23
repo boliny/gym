@@ -1,6 +1,6 @@
 <template>
-  <div :class="['step-card', position === 'left' ? 'ml-auto' : 'mr-auto']">
-    <div class="relative bg-white shadow-lg rounded-lg p-8 w-96 flex items-center">
+  <div   :class="['step-card', position === 'left' ? 'ml-auto' : 'mr-auto']">
+    <div class="relative bg-white shadow-lg rounded-lg p-8 w-[500px] flex items-center">
       <div class="mr-4 text-sky-400 text-3xl">
         <font-awesome-icon :icon="icon" />
       </div>
@@ -9,8 +9,8 @@
         <p class="text-gray-600 mt-2">{{ description }}</p>
       </div>
       <!-- سهم يشير إلى البار -->
-      <div class="absolute top-1/2 transform -translate-y-1/2 w-0 h-0 border-8 border-transparent"
-        :class="position === 'left' ? 'right-full border-r-sky-400' : 'left-full border-l-sky-400'">
+      <div class="absolute top-1/2 transform -translate-y-1/2 w-0 h-0 border-20 border-transparent"
+        :class="position === 'left' ? 'right-full border-r-white' : 'left-full border-l-white'">
       </div>
     </div>
   </div>

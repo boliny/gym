@@ -1,7 +1,8 @@
 <template>
   <div ref="stepsSection" class="relative w-full py-16 bg-gray-100 flex justify-center">
     <!-- Progress Bar (عمودي) -->
-    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-2 bg-gray-300 rounded-full overflow-hidden">
+    <div class="absolute  left-1/2 transform -translate-x-1/2 w-2 bg-gray-300 rounded-full overflow-hidden"
+      :style="{ top: `${progressStart}%`, height: `${progressEnd - progressStart}%` }">
       <div class="absolute top-0 w-full h-0 bg-sky-400 progress-bar rounded-full"></div>
       <!-- أيقونات الخطوات -->
       <div 
@@ -16,7 +17,7 @@
     </div>
 
     <!-- الكروت -->
-    <div class="container mx-auto flex flex-col space-y-16 relative">
+    <div class="container mx-auto flex flex-col space-y-16 relative ">
       <StepCard 
         v-for="(step, index) in steps" 
         :key="index" 
@@ -25,8 +26,18 @@
         :icon="step.icon" 
         :index="index"
         :position="index % 2 === 0 ? 'left' : 'right'"
-        class="opacity-0"
+        class="opacity-0 step-card"
       />
+      <!-- أسهم تشير إلى الأيقونات -->
+      <div 
+        v-for="(step, index) in steps" 
+        :key="'arrow-' + index" 
+        class="absolute w-8 h-8 text-sky-400 transform rotate-45 transition-all duration-300"
+        :style="{ top: `${(index + 1) * (100 / steps.length)}%`, left: index % 2 === 0 ? 'calc(50% - 40px)' : 'calc(50% + 40px)', transform: 'translate(-50%, -50%)' }"
+      >
+        <font-awesome-icon icon="arrow-right" class="text-3xl" v-if="index % 2 === 0" />
+        <font-awesome-icon icon="arrow-left" class="text-3xl" v-else />
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +59,8 @@ export default {
 
     const sectionProgress = ref(0);
     const stepsSection = ref(null);
+    const progressStart = ref(15);
+    const progressEnd = ref(80);
 
     const updateScroll = () => {
       if (!stepsSection.value) return;
@@ -88,7 +101,7 @@ export default {
       window.removeEventListener('scroll', updateScroll);
     });
 
-    return { steps, sectionProgress, stepsSection };
+    return { steps, sectionProgress, stepsSection, progressStart, progressEnd };
   }
 };
 </script>
