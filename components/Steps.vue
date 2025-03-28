@@ -13,7 +13,7 @@
         </div>
 
         <!-- القسم الأيمن (خطوات) -->
-        <div class="relative flex flex-col max-w-lg mx-auto w-full">
+        <div class="relative flex flex-col  mx-auto w-full">
           
           <StepItem number="1" title="Make a decision" text="Lorem ipsum dolor sit amet, mea ei viderer probatus consequuntur, sonet vocibus lobortis has ad." />
           <StepItem number="2" title="Schedule a meeting" text="Lorem ipsum dolor sit amet, mea ei viderer probatus consequuntur, sonet vocibus lobortis has ad." />

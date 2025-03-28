@@ -1,14 +1,12 @@
 <template>
-  <div ref="stepsSection" class="relative w-full py-16 bg-gray-100 flex justify-center">
-    <!-- Progress Bar (عمودي) -->
-    <div class="absolute  left-1/2 transform -translate-x-1/2 w-2 bg-gray-300 rounded-full overflow-hidden"
+  <div ref="stepsSection" class="relative w-full py-16 bg-gray-100 flex justify-center overflow-x-hidden">
+    <div class="absolute left-1/2 transform -translate-x-1/2 w-2 bg-gray-300 rounded-full overflow-hidden"
       :style="{ top: `${progressStart}%`, height: `${progressEnd - progressStart}%` }">
       <div class="absolute top-0 w-full h-0 bg-sky-400 progress-bar rounded-full"></div>
-      <!-- أيقونات الخطوات -->
       <div 
         v-for="(step, index) in steps" 
         :key="index" 
-        class="absolute flex items-center justify-center w-10 h-10 bg-white border-4 border-gray-400 rounded-full transition-all duration-300"
+        class="absolute flex items-center justify-center w-10 h-10 bg-white border-4 border-gray-400 rounded-full transition-all duration-300 will-change-transform"
         :class="{ 'border-sky-400 text-sky-400': sectionProgress >= (index + 1) * (100 / steps.length) }"
         :style="{ top: `${(index + 1) * (100 / steps.length)}%`, left: '50%', transform: 'translate(-50%, -50%)' }"
       >
@@ -16,8 +14,7 @@
       </div>
     </div>
 
-    <!-- الكروت -->
-    <div class="container mx-auto flex flex-col space-y-16 relative ">
+    <div class="container mx-auto flex flex-col space-y-16 relative">
       <StepCard 
         v-for="(step, index) in steps" 
         :key="index" 
@@ -26,9 +23,8 @@
         :icon="step.icon" 
         :index="index"
         :position="index % 2 === 0 ? 'left' : 'right'"
-        class="opacity-0 step-card"
+        class="opacity-0 step-card will-change-transform"
       />
-      <!-- أسهم تشير إلى الأيقونات -->
       <div 
         v-for="(step, index) in steps" 
         :key="'arrow-' + index" 
@@ -59,14 +55,14 @@ export default {
 
     const sectionProgress = ref(0);
     const stepsSection = ref(null);
-    const progressStart = ref(15);
-    const progressEnd = ref(80);
+    const progressStart = ref(10);
+    const progressEnd = ref(85);
 
     const updateScroll = () => {
       if (!stepsSection.value) return;
-      const sectionTop = stepsSection.value.offsetTop;
+      const sectionTop = stepsSection.value.getBoundingClientRect().top + window.scrollY;
       const sectionBottom = sectionTop + stepsSection.value.clientHeight;
-      const scrollY = window.scrollY + window.innerHeight / 2;
+      const scrollY = document.documentElement.scrollTop + window.innerHeight / 2;
       
       if (scrollY < sectionTop) {
         sectionProgress.value = 0;
@@ -85,6 +81,7 @@ export default {
 
     onMounted(() => {
       window.addEventListener('scroll', updateScroll);
+      document.body.style.overflowX = 'hidden';
       
       nextTick(() => {
         gsap.to(".step-card", {
@@ -109,5 +106,9 @@ export default {
 <style>
 .progress-bar {
   transition: height 0.2s ease-out;
+}
+
+.will-change-transform {
+  will-change: transform, opacity;
 }
 </style>

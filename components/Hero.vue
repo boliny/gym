@@ -9,7 +9,7 @@
     <!-- Content Section -->
     <div class="text-center md:text-left justify-center  px-4 sm:px-6 lg:px-10">
       <p class="my-10 md:my-10 text-lg md:text-xl font-bold animate-fade-in delay-1">Hi, I am Richard Hopkins.</p>
-      <h1 class="text-6xl font-extrabold sm:text-xl md:text-4xl leading-tight mb-3 animate-fade-in delay-2">
+      <h1 class="text-4xl font-extrabold sm:text-3xl md:text-4xl leading-tight mb-3 animate-fade-in delay-2">
         {{ title }}
       </h1>
       <p class="text-sm sm:text-base md:text-lg mb-4 animate-fade-in delay-3">
@@ -22,12 +22,12 @@
       <!-- Featured In Section -->
       <h3 class=" text-center text-sm sm:text-base font-bold mt-6 animate-fade-in delay-5">FEATURED IN</h3>
       <div class="flex justify-center items-center gap-8 mt-4 flex-wrap">
-        <span class="brand-logo animate-fade-in delay-5 text-white text-2xl font-bold">HOLP</span>
-        <span class="brand-logo animate-fade-in delay-6 text-white italic text-xl">Feed&Food</span>
-        <span class="brand-logo animate-fade-in delay-7 text-white text-2xl font-bold">LA <span class="text-sm">COACH BASE</span></span>
-        <span class="brand-logo animate-fade-in delay-8 text-white text-2xl font-bold">Bridgette</span>
-        <span class="brand-logo animate-fade-in delay-9 text-white text-2xl font-bold">amazero</span>
-        <span class="brand-logo animate-fade-in delay-10 text-white italic text-xl">Vibes</span>
+        <span class="brand-logo animate-fade-in delay-6 text-white text-2xl font-bold">HOLP</span>
+        <span class="brand-logo animate-fade-in delay-7 text-white italic text-xl">Feed&Food</span>
+        <span class="brand-logo animate-fade-in delay-8 text-white text-2xl font-bold">LA <span class="text-sm">COACH BASE</span></span>
+        <span class="brand-logo animate-fade-in delay-9 text-white text-2xl font-bold">Bridgette</span>
+        <span class="brand-logo animate-fade-in delay-10 text-white text-2xl font-bold">amazero</span>
+        <span class="brand-logo animate-fade-in delay-11 text-white italic text-xl">Vibes</span>
       </div>
     </div>
 
@@ -81,26 +81,27 @@ export default {
 }
 .animate-fade-in {
   opacity: 0;
-  animation: fadeInUp 1s ease-out forwards;
+  animation: fadeInUp 2s ease-out forwards;
 }
 .animate-slide-up {
   opacity: 0;
-  animation: slideUp 1.5s ease-out forwards;
+  animation: slideUp 3s ease-out forwards;
 }
 
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-.delay-4 { animation-delay: 0.8s; }
-.delay-5 { animation-delay: 1s; }
-.delay-6 { animation-delay: 1.2s; }
-.delay-7 { animation-delay: 1.4s; }
-.delay-8 { animation-delay: 1.6s; }
-.delay-9 { animation-delay: 1.8s; }
-.delay-10 { animation-delay: 2s; }
+.delay-1 { animation-delay: 0.5s; }
+.delay-2 { animation-delay: 1s; }
+.delay-3 { animation-delay: 1.5s; }
+.delay-4 { animation-delay: 2s; }
+.delay-5 { animation-delay: 2.5s; }
+.delay-6 { animation-delay: 3s; }
+.delay-7 { animation-delay: 3.5s; }
+.delay-8 { animation-delay: 4s; }
+.delay-9 { animation-delay: 4.5s; }
+.delay-10 { animation-delay: 5s; }
+.delay-11 { animation-delay: 5.5s; }
 
 .animate-bounce-slow {
-  animation: bounceSlow 2s infinite;
+  animation: bounceSlow 3s infinite;
 }
 
 .hero-section {
@@ -129,6 +130,9 @@ export default {
     position: relative;
     left: 50%;    
     top: 30px;
+  }
+  h1 {
+    font-size: 2rem; 
   }
 }
 </style>

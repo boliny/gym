@@ -1,7 +1,6 @@
 <template>
   <nav class="sticky top-0 left-0 w-full bg-blue-900 bg-opacity-90 backdrop-blur-md z-50 shadow-md">
     <div class="container mx-auto flex justify-between items-center p-4 flex-wrap">
-
       <!-- Logo & Social Icons -->
       <div class="flex items-center space-x-4">
         <h1 class="text-xl font-bold text-white cursor-pointer"> 
@@ -21,34 +20,26 @@
       </button>
 
       <!-- Navigation Links -->
-      <div :class="{'hidden': !menuOpen, 'flex': menuOpen}" class="md:flex md:items-center md:space-x-6 w-full md:w-auto mt-4 md:mt-0">
+      <div :class="{'hidden': !menuOpen, 'flex': menuOpen}" class="md:flex md:items-center md:space-x-6 w-full md:w-auto mt-4 md:mt-0 flex-col md:flex-row">
         <ul class="flex flex-col md:flex-row md:space-x-4 items-center w-full md:w-auto">
-          <li><a @click="goToHome" class="nav-link active cursor-pointer">Home</a></li>
-
-          <!-- Dropdown with correct visibility -->
-          <li class="relative group" @mouseenter="showDropdown" @mouseleave="hideDropdown">
-            <a class="nav-link flex items-center cursor-pointer">Start Here <i class="fas fa-chevron-down ml-1"></i></a>
-            
+          <li><a @click="goToHome" :class="{'active': activePage === 'home'}" class="nav-link cursor-pointer">Home</a></li>
+          
+          <!-- Dropdown Menu -->
+          <li class="relative">
+            <a @click="toggleDropdown" class="nav-link flex items-center cursor-pointer">Start Here <i class="fas fa-chevron-down ml-1"></i></a>
             <transition name="fade">
-              <ul v-if="dropdownVisible" class="dropdown-menu">
+              <ul v-if="dropdownVisible" class="dropdown-menu md:absolute md:left-0 md:top-full w-full md:w-48">
                 <li><a @click="goToPlan" class="dropdown-item">For Individuals</a></li>
                 <li><a @click="goToPlan" class="dropdown-item">For Business</a></li>
               </ul>
             </transition>
           </li>
-
-          <li><a @click="goToBlog" class="nav-link cursor-pointer">Blog</a></li>
+          
+          <li><a @click="goToBlog" :class="{'active': activePage === 'blog'}" class="nav-link cursor-pointer">Blog</a></li>
           <li><a href="#" class="nav-link">Shop</a></li>
-          <li><a @click="goToContact" class="nav-link cursor-pointer">Contact</a></li>
+          <li><a @click="goToContact" :class="{'active': activePage === 'contact'}" class="nav-link cursor-pointer">Contact</a></li>
         </ul>
-
-        <!-- Search & Cart Icons -->
-        <div class="flex space-x-3 mt-4 md:mt-0">
-          <a href="#" class="text-gray-300 hover:text-white transition"><i class="fas fa-shopping-cart"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition"><i class="fas fa-search"></i></a>
-        </div>
       </div>
-
     </div>
   </nav>
 </template>
@@ -59,40 +50,58 @@ export default {
     return {
       menuOpen: false,
       dropdownVisible: false,
-      dropdownTimeout: null
+      activePage: ''
     };
+  },
+  mounted() {
+    window.addEventListener('scroll', this.closeMenuOnScroll);
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.closeMenuOnScroll);
+    document.removeEventListener('click', this.handleClickOutside);
   },
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
     },
+    toggleDropdown() {
+      this.dropdownVisible = !this.dropdownVisible;
+    },
     goToContact() {
+      this.activePage = 'contact';
+      this.menuOpen = false;
       navigateTo('/contact', { external: false });
     },
     goToHome() {
+      this.activePage = 'home';
+      this.menuOpen = false;
       navigateTo('/', { external: false });
     },
     goToPlan() {
+      this.menuOpen = false;
       navigateTo('/plan', { external: false });
     },
     goToBlog() {
+      this.activePage = 'blog';
+      this.menuOpen = false;
       navigateTo('/blog', { external: false });
     },
-    showDropdown() {
-      clearTimeout(this.dropdownTimeout);
-      this.dropdownVisible = true;
+    closeMenuOnScroll() {
+      this.menuOpen = false;
+      this.dropdownVisible = false;
     },
-    hideDropdown() {
-      this.dropdownTimeout = setTimeout(() => {
+    handleClickOutside(event) {
+      if (!this.$el.contains(event.target)) {
+        this.menuOpen = false;
         this.dropdownVisible = false;
-      }, 300);
+      }
     }
   }
 };
 </script>
 
 <style scoped>
-/* General Navbar Link Styles */
 .nav-link {
   position: relative;
   padding: 10px 18px;
@@ -121,19 +130,16 @@ export default {
   width: 100%;
 }
 
-/* Dropdown Menu Styles */
-.dropdown-menu {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  background: rgba(30, 58, 138, 0.95);
-  width: 150px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 8px 0;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+.nav-link.active {
+  color: #ffcc00;
 }
 
-/* Dropdown Item Styles */
+.dropdown-menu {
+  background: rgba(30, 58, 138, 0.95);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 8px 0;
+}
+
 .dropdown-item {
   display: block;
   padding: 12px 16px;
@@ -147,7 +153,6 @@ export default {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Fade transition for dropdown */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
