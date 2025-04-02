@@ -1,27 +1,27 @@
 <template>
-  <div ref="stepItem" class="relative flex items-start mb-12 last:mb-0 lg:flex-col lg:items-center lg:text-center">
+  <div ref="stepItem" class="relative flex items-start mb-12 last:mb-0 ">
     <!-- الخط الرأسي -->
-    <div v-if="!hideSection" class="absolute left-[-10px] top-20 w-1 transition-colors duration-500 lg:left-1/2 lg:-translate-x-1/2"
+    <div v-if="!hideSection" class="absolute left-[40px] top-30 w-1 transition-colors duration-500"
       :class="isVisible ? 'bg-emerald-500' : 'bg-gray-300'"
       :style="{ height: isLastStep ? '50%' : '120%', bottom: isLastStep ? 'auto' : '0' }">
     </div>
-
+ 
     <!-- الدائرة -->
-    <div class="w-16 h-16 flex items-center justify-center rounded-full text-lg font-bold border-4 absolute left-[-45px] top-[40px] transition-colors duration-500 lg:relative lg:left-auto lg:top-auto lg:mb-4"
+    <div class="w-20 h-20 flex items-center justify-center rounded-full text-lg font-bold  absolute left-0 top-[50px]  lg:top-[85px]  transition-colors duration-500"
       :class="isVisible ? 'bg-emerald-500 text-white border-emerald-500' : 'bg-gray-200 text-gray-500 border-gray-300'">
       {{ number }}
     </div>
 
     <!-- البطاقة -->
-    <div class="ml-12 p-3 rounded-lg shadow-md w-full max-w-sm flex items-center justify-between relative text-base transition-colors duration-500 lg:ml-0 lg:flex-col lg:items-center"
+    <div class="left-26 top-4 lg:p-12 p-6  rounded-lg shadow-md lg:w-full w-3/4 flex items-center justify-between relative text-base transition-colors duration-500 "
       :class="isVisible ? 'bg-emerald-500 text-white' : 'bg-white text-gray-800'">
       <!-- سهم على اليسار -->
-      <div class="absolute top-1/2 left-[-6px] w-4 h-4 transform -translate-y-1/2 rotate-45 transition-colors duration-500 lg:left-1/2 lg:-translate-x-1/2 lg:top-[-6px]"
+      <div class="absolute top-1/2 left-[-6px] w-6 h-6 transform -translate-y-1/2 rotate-45 transition-colors duration-500 "
         :class="isVisible ? 'bg-emerald-500' : 'bg-white'">
       </div>
       <div>
-        <h4 class="font-bold my-2 text-base">{{ title }}</h4>
-        <p class="text-sm">{{ text }}</p>
+        <h4 class="font-bold my-2 text-2xl">{{ title }}</h4>
+        <p>{{ text }}</p>
       </div>
     </div>
   </div>

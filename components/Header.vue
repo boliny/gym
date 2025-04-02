@@ -29,8 +29,8 @@
             <a @click="toggleDropdown" class="nav-link flex items-center cursor-pointer">Start Here <i class="fas fa-chevron-down ml-1"></i></a>
             <transition name="fade">
               <ul v-if="dropdownVisible" class="dropdown-menu md:absolute md:left-0 md:top-full w-full md:w-48">
-                <li><a @click="goToPlan" class="dropdown-item">For Individuals</a></li>
-                <li><a @click="goToPlan" class="dropdown-item">For Business</a></li>
+                <li><a @click="goToPlan" class="dropdown-item cursor-pointer">For Individuals</a></li>
+                <li><a @click="goToPlan" class="dropdown-item cursor-pointer">For Business</a></li>
               </ul>
             </transition>
           </li>

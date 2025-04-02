@@ -1,9 +1,9 @@
 <template>
   <section class="bg-darkBlue py-20">
     <div class="container mx-auto text-center">
-      <p class="text-yellow-400 uppercase text-sm  font-semibold tracking-wide">
+      <h1 class="text-yellow-400 uppercase text-2xl font-bold tracking-widest ">
         As Featured In
-      </p>
+      </h1>
       <div class="grid grid-cols-auto-fit  gap-6 sm:gap-8 mt-6">
         <span class="brand-item">HOLP</span>
         <span class="brand-item italic">Feed&Food</span>
@@ -16,9 +16,7 @@
   </section>
 </template>
 
-<script setup>
-// لا يوجد سكريبت مطلوب هنا لأن المكون بسيط
-</script>
+
 
 <style scoped>
 .bg-darkBlue {
@@ -27,7 +25,7 @@
 
 .grid-cols-auto-fit {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   justify-items: center;
 }
 

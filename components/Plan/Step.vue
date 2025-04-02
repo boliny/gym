@@ -1,20 +1,20 @@
 <template>
   <div ref="stepsSection" class="relative w-full py-16 bg-gray-100 flex justify-center overflow-x-hidden">
-    <div class="absolute left-1/2 transform -translate-x-1/2 w-2 bg-gray-300 rounded-full overflow-hidden"
+    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 rounded-full overflow-hidden"
       :style="{ top: `${progressStart}%`, height: `${progressEnd - progressStart}%` }">
-      <div class="absolute top-0 w-full h-0 bg-sky-400 progress-bar rounded-full"></div>
+      <div class="absolute top-0 w-full bg-sky-400 progress-bar rounded-full" :style="{ height: `${sectionProgress}%` }"></div>
       <div 
         v-for="(step, index) in steps" 
         :key="index" 
-        class="absolute flex items-center justify-center w-10 h-10 bg-white border-4 border-gray-400 rounded-full transition-all duration-300 will-change-transform"
+        class="absolute flex items-center justify-center w-8 h-8 bg-white border-4 border-gray-400 rounded-full transition-all duration-300"
         :class="{ 'border-sky-400 text-sky-400': sectionProgress >= (index + 1) * (100 / steps.length) }"
         :style="{ top: `${(index + 1) * (100 / steps.length)}%`, left: '50%', transform: 'translate(-50%, -50%)' }"
       >
-        <font-awesome-icon :icon="step.icon" class="text-xl" />
+        <font-awesome-icon :icon="['fas', step.icon]" class="text-lg" />
       </div>
     </div>
 
-    <div class="container mx-auto flex flex-col space-y-16 relative">
+    <div class="container mx-auto flex flex-col space-y-12 px-4 sm:px-8 md:px-16 lg:px-24 relative">
       <StepCard 
         v-for="(step, index) in steps" 
         :key="index" 
@@ -23,17 +23,9 @@
         :icon="step.icon" 
         :index="index"
         :position="index % 2 === 0 ? 'left' : 'right'"
+        :class="{'-ml-10': index === steps.length - 1}"
         class="opacity-0 step-card will-change-transform"
       />
-      <div 
-        v-for="(step, index) in steps" 
-        :key="'arrow-' + index" 
-        class="absolute w-8 h-8 text-sky-400 transform rotate-45 transition-all duration-300"
-        :style="{ top: `${(index + 1) * (100 / steps.length)}%`, left: index % 2 === 0 ? 'calc(50% - 40px)' : 'calc(50% + 40px)', transform: 'translate(-50%, -50%)' }"
-      >
-        <font-awesome-icon icon="arrow-right" class="text-3xl" v-if="index % 2 === 0" />
-        <font-awesome-icon icon="arrow-left" class="text-3xl" v-else />
-      </div>
     </div>
   </div>
 </template>
@@ -47,42 +39,29 @@ export default {
   components: { StepCard },
   setup() {
     const steps = ref([
-      { title: "Step 1: You Decide to Improve", description: "Taking the first step toward change is crucial.", icon: "check" },
-      { title: "Step 2: Book an Appointment", description: "Find a professional to guide you.", icon: "calendar" },
-      { title: "Step 3: Take Action", description: "Execution is key. Follow your plan.", icon: "play" },
-      { title: "Step 4: Achieve Your Goals", description: "Stay consistent and celebrate success.", icon: "trophy" }
+      { title: "Step 1: Start Your Journey", description: "Every journey begins with a single step.", icon: "flag" },
+      { title: "Step 2: Plan Your Actions", description: "Set a clear plan and strategy.", icon: "clipboard-list" },
+      { title: "Step 3: Execute & Adapt", description: "Take action and adjust when necessary.", icon: "play-circle" },
+      { title: "Step 4: Reach Your Goals", description: "Celebrate your success and set new milestones.", icon: "trophy" }
     ]);
 
     const sectionProgress = ref(0);
     const stepsSection = ref(null);
     const progressStart = ref(10);
-    const progressEnd = ref(85);
+    const progressEnd = ref(90);
 
     const updateScroll = () => {
       if (!stepsSection.value) return;
       const sectionTop = stepsSection.value.getBoundingClientRect().top + window.scrollY;
       const sectionBottom = sectionTop + stepsSection.value.clientHeight;
-      const scrollY = document.documentElement.scrollTop + window.innerHeight / 2;
+      const scrollY = window.scrollY + window.innerHeight / 2;
       
-      if (scrollY < sectionTop) {
-        sectionProgress.value = 0;
-      } else if (scrollY > sectionBottom) {
-        sectionProgress.value = 100;
-      } else {
-        sectionProgress.value = ((scrollY - sectionTop) / (sectionBottom - sectionTop)) * 100;
-      }
-      
-      gsap.to(".progress-bar", {
-        height: `${sectionProgress.value}%`,
-        duration: 0.2,
-        ease: "power3.out"
-      });
+      sectionProgress.value = scrollY < sectionTop ? 0 : scrollY > sectionBottom ? 100 : ((scrollY - sectionTop) / (sectionBottom - sectionTop)) * 100;
     };
 
     onMounted(() => {
       window.addEventListener('scroll', updateScroll);
       document.body.style.overflowX = 'hidden';
-      
       nextTick(() => {
         gsap.to(".step-card", {
           opacity: 1,
@@ -105,10 +84,12 @@ export default {
 
 <style>
 .progress-bar {
-  transition: height 0.2s ease-out;
+  transition: height 0.3s ease-out;
 }
 
-.will-change-transform {
-  will-change: transform, opacity;
+.step-card {
+  opacity: 0;
+  transform: translateX(-50px);
+  max-width: 90%;
 }
 </style>

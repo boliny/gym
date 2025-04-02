@@ -50,18 +50,13 @@
     <p class="text-sm uppercase tracking-wide text-gray-500">Life</p>
     <h1 class="text-3xl font-bold mt-2">STOP IGNORING THESE 7 INSPIRING TRUTHS</h1>
     
-    <div class="flex justify-center items-center space-x-4 text-gray-500 text-sm mt-2">
-      <span>OCTOBER 14, 2018</span>
-      <span class="flex items-center space-x-1"><i class="fas fa-share"></i> <span>SHARE</span></span>
-      <span class="flex items-center space-x-1"><i class="fas fa-heart"></i> <span>5</span></span>
-      <span class="flex items-center space-x-1"><i class="fas fa-eye"></i> <span>713 VIEWS</span></span>
-    </div>
+ 
     
     <p class="text-gray-700 mt-4 leading-relaxed">
       People know who they have the potential to be. The challenge is seeing that process through. Self-development is an art. It takes time. It requires patience. It asks you to step outside your comfort zone. It...
     </p>
     
-    <button class="mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all">
+    <button class="cursor-pointer mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all">
       READ MORE
     </button>
   </div>
@@ -72,18 +67,13 @@
       <p class="text-sm uppercase tracking-wide text-gray-500 mt-2">{{ post.category }}</p>
       <h1 class="text-2xl font-bold mt-2">{{ post.title }}</h1>
       
-      <div class="flex justify-center items-center space-x-4 text-gray-500 text-sm mt-2">
-        <span>{{ post.date }}</span>
-        <span class="flex items-center space-x-1"><i class="fas fa-share"></i> <span>SHARE</span></span>
-        <span class="flex items-center space-x-1"><i class="fas fa-heart"></i> <span>{{ post.likes }}</span></span>
-        <span class="flex items-center space-x-1"><i class="fas fa-eye"></i> <span>{{ post.views }} VIEWS</span></span>
-      </div>
+ 
       
       <p class="text-gray-700 mt-4 leading-relaxed">
         {{ post.description }}
       </p>
       
-      <button class="mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all">
+      <button class="cursor-pointer mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all">
         READ MORE
       </button>
     </div>
