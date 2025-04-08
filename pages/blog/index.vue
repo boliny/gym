@@ -40,7 +40,7 @@
     <p class="text-gray-700 mt-4 leading-relaxed">
       People know who they have the potential to be. The challenge is seeing that process through. Self-development is an art. It takes time. It requires patience. It asks you to step outside your comfort zone. It...
     </p>
-    <button class="cursor-pointer mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all">
+    <button class="cursor-pointer mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all  delay-150">
       READ MORE
     </button>
   </div>
@@ -126,7 +126,7 @@
         <p class="text-gray-700 mt-4 leading-relaxed">
           {{ post.description }}
         </p>
-        <button @click="goToItem(post.id)" class="cursor-pointer mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all">
+        <button @click="goToItem(post.id)" class="cursor-pointer mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all delay-150">
           READ MORE
         </button>
       </div>
