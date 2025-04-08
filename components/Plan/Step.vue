@@ -47,14 +47,14 @@ export default {
 
     const sectionProgress = ref(0);
     const stepsSection = ref(null);
-    const progressStart = ref(10);
-    const progressEnd = ref(90);
+    const progressStart = ref(15);
+    const progressEnd = ref(85);
 
     const updateScroll = () => {
       if (!stepsSection.value) return;
       const sectionTop = stepsSection.value.getBoundingClientRect().top + window.scrollY;
       const sectionBottom = sectionTop + stepsSection.value.clientHeight;
-      const scrollY = window.scrollY + window.innerHeight / 2;
+      const scrollY = window.scrollY + window.innerHeight / 10;
       
       sectionProgress.value = scrollY < sectionTop ? 0 : scrollY > sectionBottom ? 100 : ((scrollY - sectionTop) / (sectionBottom - sectionTop)) * 100;
     };
