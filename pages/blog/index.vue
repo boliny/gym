@@ -6,28 +6,46 @@
     </header>
 
     <!-- Main Content -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div  class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Main Post -->
-      <div class="md:col-span-2">
-        <div class="relative overflow-hidden rounded-lg cursor-pointer transition-transform transform hover:scale-105 hover:shadow-lg">
-          <img 
-            src="https://themes.pixelwars.org/efor/demo-04/wp-content/uploads/sites/6/2018/09/011-550x362.jpg" 
-            alt="Main Post Image" 
-            class="w-full h-[400px] object-cover"
-          />
-        </div>
-        <h2 class="text-2xl font-bold mt-4 cursor-pointer hover:text-blue-600 transition-colors">
-          STOP IGNORING THESE 7 INSPIRING TRUTHS
-        </h2>
-        <div class="flex items-center space-x-4 text-sm text-gray-500 mt-2">
-          <span><i class="fas fa-calendar-alt mr-1"></i> Apr 8, 2025</span>
-          <span><i class="fas fa-eye mr-1"></i> 980</span>
-          <span class="flex items-center space-x-1 cursor-pointer">
-            <i class="fas fa-heart text-red-500"></i><span>245</span>
-          </span>
-          <span><i class="fas fa-share-alt mr-1"></i> Share</span>
-        </div>
-      </div>
+<!-- Main Post -->
+<div v-if="posts.length > 1" class="md:col-span-2">
+  <div class="relative overflow-hidden rounded-lg cursor-pointer hover:shadow-lg">
+    <div @click="goToItem(posts[1].id)" class="relative overflow-hidden rounded-lg cursor-pointer group">
+      <!-- الصورة -->
+      <img
+        :src="posts[1].thumbnail"
+        alt="Post Image"
+        class="w-full object-cover transition-transform duration-500 delay-150 group-hover:scale-105"
+      />
+
+      <!-- الـ Overlay -->
+      <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </div>
+  </div>
+  <div class="flex items-center space-x-4 text-sm text-gray-500 mt-2">
+    <span><i class="fas fa-calendar-alt mr-1"></i> Apr 8, 2025</span>
+    <span><i class="fas fa-eye mr-1"></i> 980</span>
+    <span class="flex items-center space-x-1 cursor-pointer">
+      <i class="fas fa-heart text-red-500"></i><span>245</span>
+    </span>
+    <span><i class="fas fa-share-alt mr-1"></i> Share</span>
+  </div>
+  <!-- Blog Highlight -->
+  <div class="max-w-2xl mx-auto text-center mt-10">
+    <p class="text-sm uppercase tracking-wide text-gray-500">Life</p>
+    <h1 class="text-3xl font-bold mt-2 cursor-pointer hover:text-blue-600 transition">
+      {{ posts[0].title }}
+    </h1>
+    <p class="text-gray-700 mt-4 leading-relaxed">
+      People know who they have the potential to be. The challenge is seeing that process through. Self-development is an art. It takes time. It requires patience. It asks you to step outside your comfort zone. It...
+    </p>
+    <button class="cursor-pointer mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all">
+      READ MORE
+    </button>
+  </div>
+</div>
+
 
       <!-- Sidebar -->
       <aside>
@@ -56,23 +74,11 @@
       </aside>
     </div>
 
-    <!-- Blog Highlight -->
-    <div class="max-w-2xl mx-auto text-center mt-10">
-      <p class="text-sm uppercase tracking-wide text-gray-500">Life</p>
-      <h1 class="text-3xl font-bold mt-2 cursor-pointer hover:text-blue-600 transition">
-        STOP IGNORING THESE 7 INSPIRING TRUTHS
-      </h1>
-      <p class="text-gray-700 mt-4 leading-relaxed">
-        People know who they have the potential to be. The challenge is seeing that process through. Self-development is an art. It takes time. It requires patience. It asks you to step outside your comfort zone. It...
-      </p>
-      <button class="cursor-pointer mt-6 px-6 py-2 border border-black rounded-full text-black hover:bg-black hover:text-white transition-all">
-        READ MORE
-      </button>
-    </div>
+    
 
     <!-- Blog Posts -->
     <div class="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div v-for="(post, index) in posts" :key="post.id" class="max-w-md mx-auto text-center">
+      <div v-for="post in posts" :key="post.id" class="max-w-md mx-auto text-center">
         <div
           class="overflow-hidden transition delay-150 cursor-pointer"
         >
